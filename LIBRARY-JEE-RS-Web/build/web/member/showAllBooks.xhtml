@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Library Management System - Show Books Details</title>
+    </h:head>
+    <h:body>
+        <h2>Show books details Page</h2>
+        <p></p>
+        <h:form id="form">
+            <p:dataTable id="booksTable" var="book" value="#{libraryBooksManagedBean.lbrClientSideList}" widgetVar="booksTable"
+                         emptyMessage="No books found with given criteria" filteredValue="#{libraryBooksManagedBean.filteredLbrClientSideList}"
+                         paginator="true" rows="10" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    Books Details <p:commandButton id="refreshButton" value="Refresh" action="#{libraryBooksManagedBean.init()}" update=":form:booksTable" />                
+                </f:facet>
+                <p:column filterBy="#{book.book_id}" headerText="ISBN" footerText="contains" filterMatchMode="contains">
+                    <h:outputText value="#{book.book_id}" />
+                </p:column>
+                <p:column filterBy="#{book.book_title}" headerText="Title" footerText="contains" filterMatchMode="contains">
+                    <h:outputText value="#{book.book_title}" />
+                </p:column>
+                <p:column filterBy="#{book.book_authors}" headerText="Authors" footerText="contains" filterMatchMode="contains">
+                    <h:outputText value="#{book.book_authors}" />
+                </p:column>
+                <p:column headerText="Year" sortBy="#{book.book_published_date}">
+                    <h:outputText value="#{book.book_published_date}" />
+                </p:column>
+                <p:column filterBy="#{book.book_status}" headerText="Status" footerText="equals" filterMatchMode="equals">
+                    <f:facet name="filter">
+                        <p:selectOneButton onchange="PF('booksTable').filter()">
+                            <f:selectItem itemLabel="All" itemValue="" />
+                            <f:selectItem itemLabel="Available" itemValue="available" />
+                            <f:selectItem itemLabel="On Loan" itemValue="on loan" />
+                        </p:selectOneButton>
+                    </f:facet>
+                    <h:outputText value="#{book.book_status}" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        <h3> 
+            Click <h:outputLink value="/LIBRARY-JEE-RS-Web/faces/member/mainmenu.xhtml">here</h:outputLink>
+            to return to the Main Menu
+        </h3>
+    </h:body>
+</html>
+
+
+
+
+

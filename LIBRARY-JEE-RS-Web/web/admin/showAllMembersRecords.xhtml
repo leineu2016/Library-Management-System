@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Library Management System - Show Books Details</title>
+    </h:head>
+    <h:body>
+        <h2>Show books details Page</h2>
+        <p></p>
+        <h:form id="form">
+            <p:dataTable id="recordsTable" var="record" value="#{libraryUsersRecordsManagedBean.lurrClientSideList}" widgetVar="recordsTable"
+                         emptyMessage="No members' records found with given criteria" filteredValue="#{libraryUsersRecordsManagedBean.filteredLurrClientSideList}"
+                         paginator="true" rows="10" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    Members Records <p:commandButton id="refreshButton" value="Refresh" action="#{libraryUsersRecordsManagedBean.init()}" update=":form:recordsTable" />
+                </f:facet>
+                <p:column sortBy="#{record.record_id}" headerText="Id">
+                    <h:outputText value="#{record.record_id}" />
+                </p:column>
+                <p:column sortBy="#{record.record_date}" headerText="Date">
+                    <h:outputText value="#{record.record_date}" />
+                </p:column>
+                <p:column sortBy="#{record.user_id}" headerText="UserId">
+                    <h:outputText value="#{record.user_id}" />
+                </p:column>
+                <p:column sortBy="#{record.book_id}" headerText="BookId">
+                    <h:outputText value="#{record.book_id}" />
+                </p:column>
+                <p:column filterBy="#{record.record_status}" headerText="Status" footerText="equals" filterMatchMode="equals">
+                    <f:facet name="filter">
+                        <p:selectOneButton onchange="PF('recordsTable').filter()">
+                            <f:selectItem itemLabel="All" itemValue="" />
+                            <f:selectItem itemLabel="Borrow" itemValue="borrow" />
+                            <f:selectItem itemLabel="Return" itemValue="return" />
+                        </p:selectOneButton>
+                    </f:facet>
+                    <h:outputText value="#{record.record_status}" />
+                </p:column>
+                <p:column style="width:32px;text-align: center">
+                    <p:commandButton update=":form:recordDetail" oncomplete="PF('recordDialog').show()" action="#{libraryUsersRecordsManagedBean.retrieveSelectedDetails()}" icon="ui-icon-search" title="View">
+                        <f:setPropertyActionListener value="#{record}" target="#{libraryUsersRecordsManagedBean.selectedlurrClientSide}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <p:dialog header="Record Details" widgetVar="recordDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                <p:outputPanel id="recordDetail" style="text-align:center;">
+                    <p:panelGrid  columns="2" rendered="#{not empty libraryUsersRecordsManagedBean.selectedlurrClientSide}" columnClasses="label,value">
+                        <h:outputText value="Record Id:" />
+                        <h:outputText value="#{libraryUsersRecordsManagedBean.selectedlurrClientSide.record_id}" />
+
+                        <h:outputText value="Book Title:" />
+                        <h:outputText value="#{libraryUsersRecordsManagedBean.selectedlbrClientSide.book_title}" />
+
+                        <h:outputText value="Book ISBN" />
+                        <h:outputText value="#{libraryUsersRecordsManagedBean.selectedlbrClientSide.book_id}" />
+
+                        <h:outputText value="User Name" />
+                        <h:outputText value="#{libraryUsersRecordsManagedBean.selectedlurClientSide.user_name}" />
+
+                        <h:outputText value="Use Email Address" />
+                        <h:outputText value="#{libraryUsersRecordsManagedBean.selectedlurClientSide.user_email_address}"/>
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+        <h3> 
+            Click <h:outputLink value="/LIBRARY-JEE-RS-Web/faces/admin/mainmenu.xhtml">here</h:outputLink>
+            to return to the Main Menu
+        </h3>
+    </h:body>
+</html>
+
+
+
+
+

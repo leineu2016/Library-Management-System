@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="member/showAllBooks.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="member/mainmenu.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="member/borrowBookSuccessful.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="member/borrowBookFailure.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="index.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="member/showMemberRecords.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="logout.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="member/returnBookSuccessful.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="admin/processMembersRequests.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="registrationSuccessful.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="member/borrowBook.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="registration.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="authFailure.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="login.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="admin/showAllMembersRecords.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="admin/mainmenu.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="admin/processMembersRequestsResult.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="registrationFailure.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="member/returnBookFailure.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="retryLogin.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="member/returnBook.xhtml" x="400" y="750" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

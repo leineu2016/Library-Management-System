@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Library Management System - Registration</title>
+    </h:head>
+    <h:body>
+
+        <h2>Registration Page</h2>
+
+        <h3>Please fill all details of a new member</h3>
+
+        <p></p>
+        <h:form>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="User Name:"/>
+                        </td>
+                        <td>
+                            <h:inputText title="Name" maxlength="32"
+                                         required="true"
+                                         requiredMessage="User name must not be blank"
+                                         value="#{libraryRegistrationManagedBean.user_name}"/>     
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="User Password:"/>
+                        </td>
+                        <td>
+                            <h:inputSecret title="Password" id="password"
+                                           required="true" 
+                                           requiredMessage="User password must not be blank"
+                                           validatorMessage="Password must be from 6 to 20 characters!"
+                                           maxlength="20" 
+                                           value="#{libraryRegistrationManagedBean.uesr_password}">
+                                <f:validateLength minimum="6" maximum="20"/>
+                            </h:inputSecret>
+                        </td>
+                        <td>
+                            <h:message for="password" style="color:red"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Phone:"/>
+                        </td>
+                        <td>
+                            <h:inputText title="Phone" maxlength="10" id="phone"
+                                         required="false"
+                                         validatorMessage="Phone number must be 10 digits!"
+                                         value="#{libraryRegistrationManagedBean.user_phone_number}">
+                                <f:validateRegex pattern="[0-9]{10}" />
+                            </h:inputText>
+                        </td>
+                        <td>
+                            <h:message for="phone" style="color:red"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Email:"/>
+                        </td>
+                        <td>
+                            <h:inputText title="Email" maxlength="32" id="email"
+                                         required="true"
+                                         requiredMessage="User email address must not be blank"
+                                         validatorMessage="Email address must be less than 33 characters and a correct email format!"
+                                         value="#{libraryRegistrationManagedBean.user_email_address}">
+                                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                            </h:inputText>
+                        </td>
+                        <td>
+                            <h:message for="email" style="color:red"/>
+                        </td>
+                    </tr>                    
+                </tbody>
+            </table>
+
+            <p></p>
+
+            <h:commandButton id="submit" value="Submit" 
+                             action="#{libraryRegistrationManagedBean.registerNewMember()}"/>
+
+        </h:form>
+
+        <h3> 
+            Click <h:outputLink value="/LIBRARY-JEE-RS-Web/faces/index.xhtml">here</h:outputLink>
+            to back to the Welcome Page
+        </h3>
+    </h:body>
+</html>
+
+
+
+
+

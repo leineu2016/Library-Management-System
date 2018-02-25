@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Library Management System - Process Members' Requests</title>
+    </h:head>
+    <h:body>
+        <h2>Show members' requests Page</h2>
+        <p></p>
+        <h:form id="form">
+            <p:dataTable id="checkboxRequests" var="memberRequest" value="#{libraryProcessRequestManagedBean.lurrClientList}" selection="#{libraryProcessRequestManagedBean.selectedLurrClientList}" rowKey="#{memberRequest.user_id}" style="margin-bottom:0"
+                         paginator="true" rows="10" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    Members' Requests <p:commandButton id="refreshButton" value="Refresh" action="#{libraryProcessRequestManagedBean.init()}" update=":form:checkboxRequests" />
+                </f:facet>
+                <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                <p:column headerText="Id" sortBy="#{memberRequest.user_id}">
+                    <h:outputText value="#{memberRequest.user_id}" />
+                </p:column>
+                <p:column filterBy="#{memberRequest.user_name}" headerText="User Name" footerText="contains" filterMatchMode="contains">
+                    <h:outputText value="#{memberRequest.user_name}" />
+                </p:column>
+                <p:column filterBy="#{memberRequest.user_phone_number}" headerText="Phone Number" footerText="contains" filterMatchMode="contains">
+                    <h:outputText value="#{memberRequest.user_phone_number}" />
+                </p:column>
+                <p:column filterBy="#{memberRequest.user_email_address}" headerText="Email Address" footerText="contains" filterMatchMode="contains">
+                    <h:outputText value="#{memberRequest.user_email_address}" />
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton process="checkboxRequests" update=":form:multiRequests" value="Select" oncomplete="PF('processDialog').show()" />
+                </f:facet>
+            </p:dataTable>
+
+            <p:dialog header="Permit Requests" widgetVar="processDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="200">
+                <p:outputPanel id="multiRequests" style="text-align:center;">
+                    <ui:repeat value="#{libraryProcessRequestManagedBean.selectedLurrClientList}" var="memberRequest">
+                        <h:outputText value="#{memberRequest.user_id} - #{memberRequest.user_name}" style="display:block"/>
+                    </ui:repeat>
+
+                    <p:commandButton value="Process" ajax="false" id="permitRequests" action="#{libraryProcessRequestManagedBean.permitNewMembers()}" styleClass="ui-priority-primary" />
+                </p:outputPanel>
+
+            </p:dialog>
+        </h:form>
+        <h3> 
+            Click <h:outputLink value="/LIBRARY-JEE-RS-Web/faces/admin/mainmenu.xhtml">here</h:outputLink>
+            to return to the Main Menu
+        </h3>
+    </h:body>
+</html>
+
+
+
+
+

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Library Management System - Main Menu - Administrator</title>
+    </h:head>
+    <h:body>
+
+        <h1>
+            <h:outputText value="Library Management System"/>
+        </h1>
+
+        <h2>
+            <h:outputText value="Main Menu"/>
+        </h2>
+
+        <ol>
+            <li>
+                <h:outputLink value="/LIBRARY-JEE-RS-Web/faces/admin/processMembersRequests.xhtml">
+                    Process new members' requests
+                </h:outputLink>
+            </li>
+
+            <li>
+                <h:outputLink value="/LIBRARY-JEE-RS-Web/faces/admin/showAllMembersRecords.xhtml">
+                    Review records of members
+                </h:outputLink>
+            </li>
+        </ol>
+
+        <h:form>
+            Click <h:commandButton value="Logout" action="#{libraryLoginManagedBean.logoutResult()}"/>           
+        </h:form>
+
+    </h:body>
+</html>
+
